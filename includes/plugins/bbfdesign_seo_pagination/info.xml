@@ -2,9 +2,9 @@
 <jtlshop3plugin>
     <Name>SEO Pagination Fix</Name>
     <Description>Korrigiert Canonicals und Robots-Tags bei paginierten Kategorieseiten</Description>
-    <Author>Webshop-Service</Author>
-    <URL>https://example.com</URL>
-    <PluginID>ws_seo_pagination</PluginID>
+    <Author>BBF Design</Author>
+    <URL>https://bbfdesign.de</URL>
+    <PluginID>bbfdesign_seo_pagination</PluginID>
     <XMLVersion>100</XMLVersion>
     <Shop4Version>406</Shop4Version>
     <Install>

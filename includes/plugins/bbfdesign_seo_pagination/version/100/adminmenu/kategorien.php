@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin: ws_seo_pagination
+ * Plugin: bbfdesign_seo_pagination
  * Admin-Menu: Kategorien SEO Einstellungen
  *
  * Wird von admin/plugin.php per require eingebunden.
@@ -15,7 +15,7 @@ $cHinweis = '';
 $cFehler  = '';
 
 // --- Formular verarbeiten ---
-if (isset($_POST['ws_seo_action']) && $_POST['ws_seo_action'] === 'save' && validateToken()) {
+if (isset($_POST['bbf_seo_action']) && $_POST['bbf_seo_action'] === 'save' && validateToken()) {
     $robots_arr = isset($_POST['robots']) && is_array($_POST['robots']) ? $_POST['robots'] : array();
     $ab_arr     = isset($_POST['ab']) && is_array($_POST['ab']) ? $_POST['ab'] : array();
     $bis_arr    = isset($_POST['bis']) && is_array($_POST['bis']) ? $_POST['bis'] : array();
@@ -40,7 +40,7 @@ if (isset($_POST['ws_seo_action']) && $_POST['ws_seo_action'] === 'save' && vali
 
         // Pruefen ob bereits ein Eintrag existiert
         $oExisting = Shop::DB()->select(
-            'xplugin_ws_seo_pagination_kategorie',
+            'xplugin_bbfdesign_seo_pagination_kategorie',
             'kKategorie', $kKategorie
         );
 
@@ -48,7 +48,7 @@ if (isset($_POST['ws_seo_action']) && $_POST['ws_seo_action'] === 'save' && vali
             // Standard = keinen Override -> Eintrag loeschen falls vorhanden
             if ($oExisting !== null) {
                 Shop::DB()->delete(
-                    'xplugin_ws_seo_pagination_kategorie',
+                    'xplugin_bbfdesign_seo_pagination_kategorie',
                     'kKategorie',
                     $kKategorie
                 );
@@ -63,7 +63,7 @@ if (isset($_POST['ws_seo_action']) && $_POST['ws_seo_action'] === 'save' && vali
             if ($oExisting !== null) {
                 $oData->dAktualisiert = date('Y-m-d H:i:s');
                 Shop::DB()->update(
-                    'xplugin_ws_seo_pagination_kategorie',
+                    'xplugin_bbfdesign_seo_pagination_kategorie',
                     'kKategorie',
                     $kKategorie,
                     $oData
@@ -72,7 +72,7 @@ if (isset($_POST['ws_seo_action']) && $_POST['ws_seo_action'] === 'save' && vali
                 $oData->dErstellt     = date('Y-m-d H:i:s');
                 $oData->dAktualisiert = date('Y-m-d H:i:s');
                 Shop::DB()->insert(
-                    'xplugin_ws_seo_pagination_kategorie',
+                    'xplugin_bbfdesign_seo_pagination_kategorie',
                     $oData
                 );
             }
@@ -94,7 +94,7 @@ $oKategorien_arr = array();
  * @param int $kSprache
  * @return array
  */
-function wsSeoPagGetKategorien($kOberKategorie = 0, $nLevel = 0, $kSprache = 0)
+function bbfSeoPagGetKategorien($kOberKategorie = 0, $nLevel = 0, $kSprache = 0)
 {
     if ($kSprache <= 0) {
         $kSprache = (int)$_SESSION['kSprache'];
@@ -116,7 +116,7 @@ function wsSeoPagGetKategorien($kOberKategorie = 0, $nLevel = 0, $kSprache = 0)
             $oKat->kKategorie = (int)$oKat->kKategorie;
             $result[]         = $oKat;
             // Rekursiv Unterkategorien laden
-            $children = wsSeoPagGetKategorien($oKat->kKategorie, $nLevel + 1, $kSprache);
+            $children = bbfSeoPagGetKategorien($oKat->kKategorie, $nLevel + 1, $kSprache);
             $result   = array_merge($result, $children);
         }
     }
@@ -124,12 +124,12 @@ function wsSeoPagGetKategorien($kOberKategorie = 0, $nLevel = 0, $kSprache = 0)
     return $result;
 }
 
-$oKategorien_arr = wsSeoPagGetKategorien(0, 0);
+$oKategorien_arr = bbfSeoPagGetKategorien(0, 0);
 
 // --- Bestehende Kategorie-Einstellungen laden ---
 $oKatSettings = array();
 $oKatSettingsDB = Shop::DB()->query(
-    "SELECT * FROM xplugin_ws_seo_pagination_kategorie", 2
+    "SELECT * FROM xplugin_bbfdesign_seo_pagination_kategorie", 2
 );
 if (is_array($oKatSettingsDB)) {
     foreach ($oKatSettingsDB as $oKS) {

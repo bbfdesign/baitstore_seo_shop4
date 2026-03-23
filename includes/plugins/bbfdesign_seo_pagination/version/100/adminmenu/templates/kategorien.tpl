@@ -24,7 +24,7 @@
             {$jtl_token}
             <input type="hidden" name="kPlugin" value="{$oPlugin->kPlugin}">
             <input type="hidden" name="cPluginTab" value="Kategorien SEO">
-            <input type="hidden" name="ws_seo_action" value="save">
+            <input type="hidden" name="bbf_seo_action" value="save">
 
             <div class="table-responsive">
                 <table class="table table-striped table-hover">

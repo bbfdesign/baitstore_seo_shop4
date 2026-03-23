@@ -10,7 +10,7 @@ Plugin zur Korrektur von SEO-relevanten Tags (Canonical, Robots, prev/next) bei 
 
 ## Installation
 
-1. Plugin-Ordner `ws_seo_pagination` nach `includes/plugins/` kopieren
+1. Plugin-Ordner `bbfdesign_seo_pagination` nach `includes/plugins/` kopieren
 2. Im JTL-Backend unter **Pluginverwaltung** das Plugin installieren und aktivieren
 3. Einstellungen unter **Pluginverwaltung > SEO Pagination Fix > Einstellungen** konfigurieren
 4. Kategorie-spezifische Overrides unter **Pluginverwaltung > SEO Pagination Fix > Kategorien SEO**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin: ws_seo_pagination
+ * Plugin: bbfdesign_seo_pagination
  * Hook: HOOK_SMARTY_OUTPUTFILTER (140)
  *
  * Korrigiert Canonical-Tags, setzt Robots-Meta und prev/next
@@ -102,7 +102,7 @@ $cRobotsOverride = '';
 if ($nSeite > 1 && $kKategorie > 0) {
     // Kategorie-spezifische Einstellung pruefen
     $oKatSeo = Shop::DB()->select(
-        'xplugin_ws_seo_pagination_kategorie',
+        'xplugin_bbfdesign_seo_pagination_kategorie',
         'kKategorie', (int)$kKategorie
     );
 
@@ -131,7 +131,7 @@ if (empty($cRobotsOverride) && $nSeite > 1) {
 // Robots-Override fuer Seite 1 (nur wenn Kategorie-spezifisch gesetzt)
 if (empty($cRobotsOverride) && $nSeite <= 1 && $kKategorie > 0) {
     $oKatSeo = Shop::DB()->select(
-        'xplugin_ws_seo_pagination_kategorie',
+        'xplugin_bbfdesign_seo_pagination_kategorie',
         'kKategorie', (int)$kKategorie
     );
 
