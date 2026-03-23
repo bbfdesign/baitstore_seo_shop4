@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jtlshop3plugin>
+    <Name>SEO Pagination Fix</Name>
+    <Description>Korrigiert Canonicals und Robots-Tags bei paginierten Kategorieseiten</Description>
+    <Author>Webshop-Service</Author>
+    <URL>https://example.com</URL>
+    <PluginID>ws_seo_pagination</PluginID>
+    <XMLVersion>100</XMLVersion>
+    <Shop4Version>406</Shop4Version>
+    <Install>
+        <Version nr="100">
+            <SQL>install.sql</SQL>
+            <CreateDate>2026-03-23</CreateDate>
+        </Version>
+        <Hooks>
+            <Hook id="140">140_seo_output_filter.php</Hook>
+        </Hooks>
+        <Adminmenu>
+            <Customlink sort="1">
+                <Name>Kategorien SEO</Name>
+                <Filename>kategorien.php</Filename>
+            </Customlink>
+            <Settingslink sort="2">
+                <Name>Einstellungen</Name>
+                <Setting type="selectbox" initialValue="Y" sort="1" conf="Y">
+                    <Name>Self-Referencing Canonicals</Name>
+                    <Description>Paginierte Seiten erhalten einen Canonical-Tag auf sich selbst statt auf Seite 1</Description>
+                    <ValueName>canonical_self_ref</ValueName>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="0">Ja</Option>
+                        <Option value="N" sort="1">Nein</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="Y" sort="2" conf="Y">
+                    <Name>Paginierte Seiten noindex</Name>
+                    <Description>Paginierte Kategorieseiten automatisch auf noindex, follow setzen</Description>
+                    <ValueName>pagination_noindex</ValueName>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="0">Ja</Option>
+                        <Option value="N" sort="1">Nein</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue="2" sort="3" conf="Y">
+                    <Name>noindex ab Seite</Name>
+                    <Description>Ab welcher Seitenzahl noindex greifen soll (Standard: 2)</Description>
+                    <ValueName>pagination_noindex_ab</ValueName>
+                </Setting>
+                <Setting type="text" initialValue="0" sort="4" conf="Y">
+                    <Name>noindex bis Seite</Name>
+                    <Description>Bis zu welcher Seitenzahl noindex greifen soll (0 = unbegrenzt)</Description>
+                    <ValueName>pagination_noindex_bis</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="Y" sort="5" conf="Y">
+                    <Name>rel prev/next Tags</Name>
+                    <Description>rel=prev und rel=next Pagination-Tags im Head-Bereich setzen</Description>
+                    <ValueName>prev_next_tags</ValueName>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="0">Ja</Option>
+                        <Option value="N" sort="1">Nein</Option>
+                    </SelectboxOptions>
+                </Setting>
+            </Settingslink>
+        </Adminmenu>
+    </Install>
+    <Uninstall>uninstall.php</Uninstall>
+</jtlshop3plugin>
